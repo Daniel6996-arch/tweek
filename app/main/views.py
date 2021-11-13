@@ -1,11 +1,24 @@
 from flask import render_template,request,redirect,url_for
 from . import main
-from ..requests import get_quote
-#from ..models import Qoute
+import urllib.request,json
+import requests
+
 
 @main.route('/')
 def index():
+    url = 'http://quotes.stormconsultancy.co.uk/random.json'
 
-    quote = get_quote()
-    title = 'Sources - Welcome to The best News resource Online'
-    return render_template('index.html', title = title, quote = quote )
+    r = requests.get(url)
+    quote = r.json()
+    author = quote['author']
+    random_quote = quote['quote']
+    id = quote['id']
+    permalink = quote['permalink']
+   
+
+
+    return render_template('index.html', quote = random_quote, author = author,id = id, link = permalink)
+
+
+
+    

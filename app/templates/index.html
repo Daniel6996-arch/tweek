@@ -2,6 +2,13 @@
 
 {% block content %}
 
-<h1>{{quote.id}}</h1>
+<div>
+    <h1>Quote of the moment</h1>
+    <p><span>Quote: </span>{{ quote }}</p>
+    <p><span>Author: </span>{{ author }}, {{ id }}</p>
+    <p><span>Link: </span>{{ link }}</p>
+</div>
+
+
 
 {% endblock %}
