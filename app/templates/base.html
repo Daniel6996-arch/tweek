@@ -8,14 +8,23 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <title>Tweets</title>
 </head>
-<body>
-    {% block content %}
+<body class="bg-dark">
+    <div>
+        {% block navbar %}
+        {% include 'navbar.html' %}
+        {% endblock %}
+    </div>
 
-    {% endblock %}
-    <div class="text-center fst-italic container">
+    <div>
+        {% block content %}
+
+        {% endblock %}
+    </div>
+
+    <div class="text-center fst-italic container text-primary border-danger p-1">
         <h1 class="display-6">Quote of the moment</h1>
         <p  class="fst-italic">{{ quote }}</p>
-        <p><span  class="blockquote-footer">Author: </span>{{ author }}, {{ id }}</p>
+        <p><span  class="text-muted">Author: </span>{{ author }},<span class="text-muted">quote-id: </span>{{ id }}</p>
         <a href="{{ link }}" class="text-muted">{{ link }}</a>
     </div>
 </body>

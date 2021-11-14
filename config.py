@@ -1,7 +1,7 @@
 import os
 
 class Config:
-    RANDOM_QUOTES_BASE_URL = 'http://quotes.stormconsultancy.co.uk/random.json'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:Access@localhost/tweeks'
 
 
 class ProdConfig(Config):
