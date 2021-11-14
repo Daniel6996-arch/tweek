@@ -5,6 +5,7 @@ import requests
 from ..models import User
 from .forms import UpdateProfile
 from .. import db
+from flask_login import login_required
 
 
 
