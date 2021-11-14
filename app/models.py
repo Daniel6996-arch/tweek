@@ -53,6 +53,7 @@ class Blog(db.Model):
     __tablename__ = 'blogs'
 
     id = db.Column(db.Integer,primary_key = True)
+    topic = db.Column(db.String(200))
     data = db.Column(db.String())
     date = db.Column(db.DateTime(timezone = True), default = func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))

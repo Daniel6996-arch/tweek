@@ -22,7 +22,15 @@ def index():
    
 
 
-    return render_template('base.html', quote = random_quote, author = author,id = id, link = permalink)
+    return render_template('inn.html', quote = random_quote, author = author,id = id, link = permalink)
+
+@main.route('/tweeks')    
+def tweeks():
+    blog_form = BlogForm()
+    if blog_form.validate_on_submit():
+        blog = Blog.query.filter_by(email = login_form.email.data).first()
+
+    return render_template('tweek.html')
 
 @main.route('/user/<uname>')
 def profile(uname):
