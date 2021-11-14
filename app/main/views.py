@@ -17,7 +17,7 @@ def index():
    
 
 
-    return render_template('index.html', quote = random_quote, author = author,id = id, link = permalink)
+    return render_template('base.html', quote = random_quote, author = author,id = id, link = permalink)
 
 
 
