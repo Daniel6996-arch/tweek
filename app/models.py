@@ -2,11 +2,7 @@ from . import db
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
 from . import login_manager
-
-
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
+from sqlalchemy.sql import func
 
 class User(UserMixin,db.Model):
     __tablename__ = 'users'
@@ -14,10 +10,11 @@ class User(UserMixin,db.Model):
     id = db.Column(db.Integer,primary_key = True)
     username = db.Column(db.String(255),index = True)
     email = db.Column(db.String(255),unique = True,index = True)
-    role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
+#    role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
     password_secure = db.Column(db.String(255))
+    blogs = db.relationship('Blog')
 
     @property
     def password(self):
@@ -35,14 +32,22 @@ class User(UserMixin,db.Model):
         return f'User {self.username}'
 
 
-class Role(db.Model):
-    __tablename__ = 'roles'
+#class Role(db.Model):
+#    __tablename__ = 'roles'
+#
+#    id = db.Column(db.Integer,primary_key = True)
+#    name = db.Column(db.String(255))
+#    users = db.relationship('User',backref = 'role',lazy="dynamic")
+#
+#
+#
+#    def __repr__(self):
+#        return f'User {self.username}'
+
+class Blog(db.Model):
+    __tablename__ = 'blogs'
 
     id = db.Column(db.Integer,primary_key = True)
-    name = db.Column(db.String(255))
-    users = db.relationship('User',backref = 'role',lazy="dynamic")
-
-
-
-    def __repr__(self):
-        return f'User {self.username}'
+    data = db.Column(db.String())
+    date = db.Column(db.DateTime(timezone = True), default = func.now())
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
