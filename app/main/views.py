@@ -42,17 +42,18 @@ def blogs():
     
     try:
         blogs = Blog.query.all()
-        blog_text = '<ul>'
-        for blog in blogs:
-            blog_text += '<li>' + blog.topic + ', ' + blog.data + '</li>'
-        blog_text += '</ul>'
-        return blog_text
+        #blog_text = '<ul>'
+        #for blog in blogs:
+        #    blog_text += '<li>' + blog.topic + ', ' + blog.data + '</li>'
+        #blog_text += '</ul>'
+        #return blog_text
     except Exception as e:
         # e holds description of the error
         error_text = "<p>The error:<br>" + str(e) + "</p>"
         hed = '<h1>Something is broken.</h1>'
         return hed + error_text
-
+        
+    return render_template('blogs.html', blogs = blogs)
 
 @main.route('/user/<uname>')
 def profile(uname):

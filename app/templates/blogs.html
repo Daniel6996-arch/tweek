@@ -5,11 +5,11 @@
 <h1>Blogs by blogers</h1>
 
 <div>
-    {% for item in data %}
-    <tr>
-        <td>{{item[0]}}</td>
-        <td>{{item[1]}}</td>
-    </tr>
+    {% for blog in blogs %}
+        <div class="border p-2">
+            <p>Blog Topic: {{blog.topic}}</p>
+            <p>Blog: {{blog.data}}</p>
+        </div>
     {% endfor %}
 </div>
 
