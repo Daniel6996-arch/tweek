@@ -7,14 +7,11 @@
     {% if current_user.is_authenticated %}
     <h1>What's on your mind?</h1>
 
-    
-        
     <div>
         {{wtf.quick_form(blog_form)}}
     </div>
     {% else %}
-    <h1>Please login or Sign up to post a blog</h1>
-    <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
+    <h1>Please Sign in to post a blog</h1>
     {% endif %}
     
 </div>
