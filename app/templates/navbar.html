@@ -2,70 +2,28 @@
     <!-- Container wrapper -->
     <div class="container-fluid">
       <!-- Navbar brand -->
-      <a class="navbar-brand" href="#">Brand</a>
-  
-      <!-- Toggle button -->
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-mdb-toggle="collapse"
-        data-mdb-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <i class="fas fa-bars"></i>
-      </button>
+      <a class="navbar-brand" href="{{ url_for('main.index') }}">Tweek for tweeks</a>
   
       <!-- Collapsible wrapper -->
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <!-- Left links -->
-        <ul class="">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="{{ url_for('main.index') }}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link active" href="{{ url_for('main.blogs') }}">Blogs</a>
           </li>
           <!-- Navbar dropdown -->
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-mdb-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Dropdown
-            </a>
-            <!-- Dropdown menu -->
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li>
-                <a class="dropdown-item" href="#">Action</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#">Another action</a>
-              </li>
-              <li><hr class="dropdown-divider" /></li>
-              <li>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </li>
-            </ul>
-          </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"
-              >Disabled</a
-            >
+            <a class="nav-link active" href="{{ url_for('main.tweeks') }}">Add a blog</a>
           </li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-            {% if current_user.is_authenticated %}
-            <li><a href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a></li>
-            <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
-            {% else %}
-            <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
-            {%endif%}
+          {% if current_user.is_authenticated %}
+          <li class="nav-item"><a class="nav-link active" href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a></li>
+          <li class="nav-item"><a class="nav-link active" href="{{url_for('auth.logout')}}">Sign out</a></li>
+          {% else %}
+          <li class="nav-item"><a class="nav-link active" href="{{url_for('auth.login')}}">Sign in</a></li>
+          {%endif%}
         </ul>
       </div>
       <!-- Collapsible wrapper -->

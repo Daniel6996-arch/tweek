@@ -12,6 +12,9 @@
     <div>
         {{wtf.quick_form(blog_form)}}
     </div>
+    {% else %}
+    <h1>Please login or Sign up to post a blog</h1>
+    <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
     {% endif %}
     
 </div>
