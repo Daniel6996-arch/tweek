@@ -4,3 +4,6 @@ body{
     background-attachment: fixed;
     background-size: cover;
 }
+#margin{
+    margin: 0vh 4vw 0vh 4vw;
+}
