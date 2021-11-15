@@ -10,10 +10,12 @@
         <div class="border p-2">
             <p>Blog Topic: {{blog.topic}}</p>
             <p>Blog: {{blog.data}}</p>
+            <p>Posted on: {{ blog.date }}</p>
         </div>
         <div>
             {% for comment in comments %}
             <p>{{ comment.comment }}</p>
+            <p>{{ comment.date }}</p>
             {% endfor %}
         </div>
         <div>
