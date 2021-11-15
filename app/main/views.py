@@ -9,6 +9,7 @@ from flask_login import login_required
 
 
 
+
 @main.route('/')
 def index():
     url = 'http://quotes.stormconsultancy.co.uk/random.json'
@@ -35,6 +36,23 @@ def tweeks():
 
     return render_template('tweek.html', blog_form = blog_form)
    
+
+@main.route('/blogs',methods=['GET','POST'])    
+def blogs():
+    
+    try:
+        blogs = Blog.query.all()
+        blog_text = '<ul>'
+        for blog in blogs:
+            blog_text += '<li>' + blog.topic + ', ' + blog.data + '</li>'
+        blog_text += '</ul>'
+        return blog_text
+    except Exception as e:
+        # e holds description of the error
+        error_text = "<p>The error:<br>" + str(e) + "</p>"
+        hed = '<h1>Something is broken.</h1>'
+        return hed + error_text
+
 
 @main.route('/user/<uname>')
 def profile(uname):
