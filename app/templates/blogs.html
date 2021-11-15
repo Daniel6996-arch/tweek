@@ -5,11 +5,16 @@
 
 <h1>Blogs by blogers</h1>
 
-<div>
+<div class="container">
     {% for blog in blogs %}
         <div class="border p-2">
             <p>Blog Topic: {{blog.topic}}</p>
             <p>Blog: {{blog.data}}</p>
+        </div>
+        <div>
+            {% for comment in comments %}
+            <p>{{ comment.comment }}</p>
+            {% endfor %}
         </div>
         <div>
             {{wtf.quick_form(comment_form)}}

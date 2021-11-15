@@ -47,6 +47,7 @@ def blogs():
     
     try:
         blogs = Blog.query.all()
+        comments = Comment.query.all()
         #blog_text = '<ul>'
         #for blog in blogs:
         #    blog_text += '<li>' + blog.topic + ', ' + blog.data + '</li>'
@@ -58,7 +59,7 @@ def blogs():
         hed = '<h1>Something is broken.</h1>'
         return hed + error_text
 
-    return render_template('blogs.html', blogs = blogs, comment_form = comment_form)
+    return render_template('blogs.html', blogs = blogs, comment_form = comment_form, comments = comments)
 
 @main.route('/user/<uname>')
 def profile(uname):
