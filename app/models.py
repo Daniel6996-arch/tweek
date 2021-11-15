@@ -57,3 +57,13 @@ class Blog(db.Model):
     data = db.Column(db.String())
     date = db.Column(db.DateTime(timezone = True), default = func.now(), index = True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    comments = db.relationship('Comment')
+
+
+class Comment(db.Model):
+    __tablename__ = 'comments'
+
+    id = db.Column(db.Integer,primary_key = True)
+    comment = db.Column(db.String(500))
+    date = db.Column(db.DateTime(timezone = True), default = func.now(), index = True)
+    blog_id = db.Column(db.Integer, db.ForeignKey('blogs.id'))

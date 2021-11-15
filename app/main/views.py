@@ -2,8 +2,8 @@ from flask import render_template,request,redirect,url_for,abort
 from . import main
 import urllib.request,json
 import requests
-from ..models import User, Blog
-from .forms import UpdateProfile, BlogForm
+from ..models import User, Blog, Comment
+from .forms import UpdateProfile, BlogForm, CommentForm
 from .. import db
 from flask_login import login_required
 
@@ -39,6 +39,11 @@ def tweeks():
 
 @main.route('/blogs',methods=['GET','POST'])    
 def blogs():
+    comment_form = CommentForm()
+    if comment_form.validate_on_submit():
+        comment = Comment(comment = comment_form.comment.data)
+        db.session.add(comment)
+        db.session.commit()
     
     try:
         blogs = Blog.query.all()
@@ -52,8 +57,8 @@ def blogs():
         error_text = "<p>The error:<br>" + str(e) + "</p>"
         hed = '<h1>Something is broken.</h1>'
         return hed + error_text
-        
-    return render_template('blogs.html', blogs = blogs)
+
+    return render_template('blogs.html', blogs = blogs, comment_form = comment_form)
 
 @main.route('/user/<uname>')
 def profile(uname):
