@@ -55,5 +55,5 @@ class Blog(db.Model):
     id = db.Column(db.Integer,primary_key = True)
     topic = db.Column(db.String(200))
     data = db.Column(db.String())
-    date = db.Column(db.DateTime(timezone = True), default = func.now())
+    date = db.Column(db.DateTime(timezone = True), default = func.now(), index = True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))

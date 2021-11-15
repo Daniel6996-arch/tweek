@@ -7,5 +7,6 @@ class UpdateProfile(FlaskForm):
     submit = SubmitField('Submit')
 
 class BlogForm(FlaskForm):
-    blog = TextAreaField('Add a blog.')
+    topic = StringField('Enter your topic')
+    data = TextAreaField('Add a blog.')
     submit = SubmitField('Submit')    

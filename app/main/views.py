@@ -2,8 +2,8 @@ from flask import render_template,request,redirect,url_for,abort
 from . import main
 import urllib.request,json
 import requests
-from ..models import User
-from .forms import UpdateProfile
+from ..models import User, Blog
+from .forms import UpdateProfile, BlogForm
 from .. import db
 from flask_login import login_required
 
@@ -24,13 +24,17 @@ def index():
 
     return render_template('inn.html', quote = random_quote, author = author,id = id, link = permalink)
 
-@main.route('/tweeks')    
+@main.route('/tweeks',methods=['GET','POST'])    
 def tweeks():
     blog_form = BlogForm()
     if blog_form.validate_on_submit():
-        blog = Blog.query.filter_by(email = login_form.email.data).first()
+        blog = Blog(data = blog_form.data.data, topic = blog_form.topic.data)
+        db.session.add(blog)
+        db.session.commit()
+        
 
-    return render_template('tweek.html')
+    return render_template('tweek.html', blog_form = blog_form)
+   
 
 @main.route('/user/<uname>')
 def profile(uname):
