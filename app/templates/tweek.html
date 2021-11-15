@@ -4,11 +4,16 @@
 {% block content %}
 
 <div class="container">
+    {% if current_user.is_authenticated %}
     <h1>What's on your mind?</h1>
 
+    
+        
     <div>
         {{wtf.quick_form(blog_form)}}
     </div>
+    {% endif %}
+    
 </div>
 
 {% endblock %}
