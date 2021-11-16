@@ -5,6 +5,11 @@
 
 <h1 class="display-3 text-center">Welcome to Tweek for tweeks</h1>
 
-
+<div class="text-center fst-italic container text-primary border p-1">
+    <h1 class="display-6">Quote of the moment</h1>
+    <p  class="fst-italic">{{ quote }}</p>
+    <p><span  class="text-danger">Author: </span>{{ author }},<span class="text-danger">quote-id: </span>{{ id }}</p>
+    <a href="{{ link }}" class="text-danger">{{ link }}</a>
+</div>
 
 {% endblock %}

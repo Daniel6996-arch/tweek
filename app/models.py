@@ -67,3 +67,5 @@ class Comment(db.Model):
     comment = db.Column(db.String(500))
     date = db.Column(db.DateTime(timezone = True), default = func.now(), index = True)
     blog_id = db.Column(db.Integer, db.ForeignKey('blogs.id'))
+
+    

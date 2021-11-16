@@ -48,6 +48,7 @@ def blogs():
     try:
         blogs = Blog.query.all()
         comments = Comment.query.all()
+        #comment = Comment.query.filter_by(blogs_id=blog_id).all()
         #blog_text = '<ul>'
         #for blog in blogs:
         #    blog_text += '<li>' + blog.topic + ', ' + blog.data + '</li>'
